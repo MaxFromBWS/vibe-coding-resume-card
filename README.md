@@ -2,6 +2,8 @@
 
 Interactive portfolio-style resume website with modern UI, theme switching, project links, and downloadable PDF resume.
 
+Russian version: [README_RU.md](README_RU.md)
+
 ## Live Demo
 
 - Website: [https://maxfrombws.github.io/vibe-coding-resume-card/](https://maxfrombws.github.io/vibe-coding-resume-card/)
