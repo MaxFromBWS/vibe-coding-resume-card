@@ -1,0 +1,388 @@
+<!doctype html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Резюме — Максим</title>
+  <style>
+    :root {
+      --bg: #060b17;
+      --bg-2: #0b1328;
+      --surface: rgba(17, 25, 47, 0.78);
+      --surface-2: rgba(21, 31, 58, 0.92);
+      --text: #e8eeff;
+      --muted: #a9b8df;
+      --line: rgba(146, 168, 255, 0.24);
+      --accent: #89a8ff;
+      --accent-2: #6ff1d4;
+      --glow: 0 18px 45px rgba(6, 12, 31, 0.55);
+      --radius: 22px;
+      --radius-sm: 16px;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    html, body {
+      margin: 0;
+      padding: 0;
+      min-height: 100%;
+      color: var(--text);
+      font-family: "Inter", "Segoe UI", system-ui, -apple-system, sans-serif;
+      line-height: 1.55;
+      background:
+        radial-gradient(1200px 650px at -10% -10%, rgba(137, 168, 255, 0.22), transparent 45%),
+        radial-gradient(800px 500px at 110% -5%, rgba(111, 241, 212, 0.17), transparent 40%),
+        linear-gradient(180deg, var(--bg) 0%, var(--bg-2) 100%);
+      -webkit-print-color-adjust: exact !important;
+      print-color-adjust: exact !important;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    .container {
+      width: min(1120px, calc(100% - 34px));
+      margin: 0 auto;
+    }
+
+    .glass {
+      border: 1px solid var(--line);
+      background: var(--surface);
+      backdrop-filter: blur(10px);
+      box-shadow: var(--glow);
+    }
+
+    .hero {
+      padding: 20px 0 14px;
+    }
+
+    .hero-card {
+      border-radius: var(--radius);
+      padding: clamp(18px, 4vw, 34px);
+      display: grid;
+      grid-template-columns: 270px 1fr;
+      align-items: center;
+      gap: clamp(16px, 3vw, 30px);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .hero-card::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(120deg, transparent 0%, rgba(255, 255, 255, 0.07) 45%, transparent 80%);
+      transform: translateX(-110%);
+    }
+
+    .avatar-wrap {
+      position: relative;
+      border-radius: 20px;
+      overflow: hidden;
+      border: 1px solid rgba(111, 241, 212, 0.42);
+      min-height: 320px;
+      background: #0a1123;
+      isolation: isolate;
+    }
+
+    .avatar-wrap::after {
+      content: "";
+      position: absolute;
+      inset: auto 0 0 0;
+      height: 42%;
+      background: linear-gradient(180deg, transparent 0%, rgba(6, 11, 24, 0.88) 100%);
+      z-index: 1;
+      pointer-events: none;
+    }
+
+    .avatar-wrap img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+
+    .hero-content {
+      position: relative;
+      z-index: 2;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+    }
+
+    .badge {
+      display: inline-flex;
+      gap: 8px;
+      align-items: center;
+      border-radius: 999px;
+      border: 1px solid rgba(255, 255, 255, 0.22);
+      background: rgba(8, 14, 31, 0.55);
+      padding: 8px 13px;
+      color: #c8d5fa;
+      font-size: 14px;
+      margin-bottom: 14px;
+    }
+
+    h1, h2, h3 {
+      margin: 0 0 12px;
+      line-height: 1.2;
+    }
+
+    h1 {
+      font-size: clamp(29px, 4vw, 48px);
+      letter-spacing: 0.2px;
+    }
+
+    h2 {
+      font-size: clamp(22px, 3vw, 34px);
+    }
+
+    .lead {
+      margin: 0 0 18px;
+      color: #d5e2ff;
+      max-width: 760px;
+      font-size: clamp(16px, 2vw, 20px);
+    }
+
+    .section {
+      padding: 16px 0;
+    }
+
+    .panel {
+      border-radius: var(--radius-sm);
+      padding: 20px;
+      background: var(--surface-2);
+      border: 1px solid var(--line);
+      box-shadow: 0 8px 22px rgba(4, 10, 26, 0.35);
+    }
+
+    .split {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 14px;
+    }
+
+    .text-muted {
+      color: var(--muted);
+      margin: 0;
+    }
+
+    .skills {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+    }
+
+    .chip {
+      border-radius: 999px;
+      border: 1px solid rgba(255, 255, 255, 0.2);
+      background: rgba(255, 255, 255, 0.03);
+      padding: 8px 12px;
+      color: #d7e3ff;
+      font-size: 14px;
+    }
+
+    .projects {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 14px;
+      align-items: stretch;
+    }
+
+    .project-card {
+      border-radius: 16px;
+      border: 1px solid rgba(143, 168, 255, 0.28);
+      background: linear-gradient(180deg, rgba(24, 34, 66, 0.92), rgba(14, 21, 43, 0.95));
+      padding: 18px;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      break-inside: avoid;
+      page-break-inside: avoid;
+    }
+
+    .project-card h3 {
+      font-size: 24px;
+      margin-bottom: 6px;
+    }
+
+    .project-card p {
+      margin: 0;
+      color: var(--muted);
+      flex: 1;
+      font-size: 17px;
+    }
+
+    .project-actions {
+      display: flex;
+      gap: 10px;
+      flex-wrap: wrap;
+      margin-top: 2px;
+    }
+
+    .project-link {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      padding: 9px 14px;
+      border-radius: 999px;
+      border: 1px solid rgba(111, 241, 212, 0.52);
+      color: #bbfff2;
+      font-weight: 600;
+    }
+
+    .contacts {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 12px;
+    }
+
+    .contact {
+      border-radius: 14px;
+      border: 1px solid rgba(255, 255, 255, 0.2);
+      background: rgba(13, 22, 44, 0.8);
+      padding: 14px;
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+      break-inside: avoid;
+      page-break-inside: avoid;
+    }
+
+    .contact strong {
+      font-size: 13px;
+      color: #c7d5fa;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+    }
+
+    .contact a {
+      color: #e8f4ff;
+      word-break: break-word;
+    }
+
+    .footer {
+      padding: 14px 0 34px;
+      text-align: center;
+      color: #95a8da;
+      font-size: 14px;
+    }
+
+    @media (max-width: 980px) {
+      .hero-card {
+        grid-template-columns: 1fr;
+      }
+
+      .avatar-wrap {
+        max-width: 360px;
+      }
+
+      .projects,
+      .split,
+      .contacts {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    @media print {
+      @page {
+        size: A4;
+        margin: 10mm;
+      }
+
+      html, body {
+        margin: 0;
+      }
+
+      .container {
+        width: 100%;
+      }
+
+      .hero-card,
+      .panel,
+      .project-card,
+      .contact {
+        break-inside: avoid;
+        page-break-inside: avoid;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header class="hero">
+    <div class="container">
+      <div class="hero-card glass">
+        <div class="avatar-wrap">
+          <img src="assets/profile-maxim-new.png" alt="Фото Максима">
+        </div>
+        <div class="hero-content">
+          <span class="badge">AI + Web + Bots + Automation</span>
+          <h1>Я — Максим, специалист по вайбкодингу</h1>
+          <p class="lead">
+            Выпускник школы Нейросетей и СММ Ксении Барановой.<br>Создаю сайты, ботов и digital-проекты с помощью ИИ.
+          </p>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <section class="section">
+      <div class="container">
+        <div class="panel">
+          <h2>Чем я помогаю</h2>
+          <div class="split">
+            <p class="text-muted">Помогаю бизнесу и экспертам запускать сайты, ботов и автоматизации, чтобы быстро выходить на рынок и эффективно принимать заявки от клиентов.</p>
+            <p class="text-muted">Работаю с логикой интерфейсов, сценариями пользователей и интеграциями AI, чтобы продукт был удобным, современным и готовым к масштабированию.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="container">
+        <div class="panel">
+          <h2>Мои навыки</h2>
+          <div class="skills">
+            <span class="chip">Создание сайтов</span>
+            <span class="chip">Разработка ботов (Telegram / VK)</span>
+            <span class="chip">Интеграция ИИ</span>
+            <span class="chip">Работа с интерфейсами и логикой проектов</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="container">
+        <div class="panel">
+          <h2>Контакты</h2>
+          <div class="contacts">
+            <article class="contact">
+              <strong>Telegram</strong>
+              <a href="https://t.me/ONYX_lab">@ONYX_lab</a>
+            </article>
+            <article class="contact">
+              <strong>Почта</strong>
+              <a href="mailto:onyx.lab.chat@gmail.com">onyx.lab.chat@gmail.com</a>
+            </article>
+            <article class="contact">
+              <strong>Телефон</strong>
+              <a href="tel:+79003181573">8-900-318-15-73</a>
+            </article>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <div class="container">© 2026 Максим — специалист по вайбкодингу</div>
+  </footer>
+
+</body>
+</html>
